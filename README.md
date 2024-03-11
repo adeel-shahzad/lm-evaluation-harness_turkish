@@ -1,4 +1,7 @@
-# Language Model Evaluation Harness
+# Language Model Evaluation Harness Turkish
+
+This Fork is used to adapt the LM-Evaluation Harness to turkish benchmarks. The tests included are (Hellaswag, Truthful_qa, GSM8K, Winogrande, ARC, MMLU)
+More details about how to use the Turkish tests exists in the Basic Usage section.
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10256836.svg)](https://doi.org/10.5281/zenodo.10256836)
 
@@ -53,11 +56,12 @@ We also provide a number of optional dependencies for extended functionality. A 
 ### Hugging Face `transformers`
 
 To evaluate a model hosted on the [HuggingFace Hub](https://huggingface.co/models) (e.g. GPT-J-6B) on `hellaswag` you can use the following command (this assumes you are using a CUDA-compatible GPU):
-
+To use on of the Turkish evaluations for (Hellaswag, Truthful_qa, GSM8K, Winogrande, ARC, MMLU) it is sufficient to add "_tr" to the intended test. 
+For example, to evaluate on the turkish hellaswag we can use "hellaswag_tr"
 ```bash
 lm_eval --model hf \
     --model_args pretrained=EleutherAI/gpt-j-6B \
-    --tasks hellaswag \
+    --tasks hellaswag_tr \
     --device cuda:0 \
     --batch_size 8
 ```
@@ -67,7 +71,7 @@ Additional arguments can be provided to the model constructor using the `--model
 ```bash
 lm_eval --model hf \
     --model_args pretrained=EleutherAI/pythia-160m,revision=step100000,dtype="float" \
-    --tasks lambada_openai,hellaswag \
+    --tasks lambada_openai,hellaswag_tr \
     --device cuda:0 \
     --batch_size 8
 ```
@@ -79,7 +83,7 @@ Batch size selection can be automated by setting the  ```--batch_size``` flag to
 ```bash
 lm_eval --model hf \
     --model_args pretrained=EleutherAI/pythia-160m,revision=step100000,dtype="float" \
-    --tasks lambada_openai,hellaswag \
+    --tasks lambada_openai,hellaswag_tr \
     --device cuda:0 \
     --batch_size auto:4
 ```
