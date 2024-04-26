@@ -2,6 +2,7 @@ env
 *.pyc
 output/
 data/
+llm_evaluation/
 lm_cache
 .idea
 build
