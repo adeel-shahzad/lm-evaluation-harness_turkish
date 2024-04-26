@@ -1,5 +1,5 @@
 "dataset_name": "moral_disputes"
-"description": "Aşağıda, ahlaki anlaşmazlıklarla ilgili çoktan seçmeli soruların (cevaplarıyla birlikte) olduğu bir liste bulunmaktadır.
+"description": "Aşağıda, ahlaki anlaşmazlıklarla ilgili çoktan seçmeli soruların (cevaplarıyla birlikte) olduğu bir liste bulunmaktadır."
 "group": "mmlu_humanities"
 "group_alias": "humanities"
 "include": "_default_template_yaml"

@@ -1,4 +1,4 @@
-group: mmlu_tr
+group: mmlu_tr-v0.2
 task:
   - mmlu_stem
   - mmlu_other
