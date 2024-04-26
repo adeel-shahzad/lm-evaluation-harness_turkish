@@ -1,5 +1,5 @@
 "dataset_name": "human_sexuality"
-"description": "Aşağıda, insan cinselliğiyle ilgili çoktan seçmeli soruların (cevaplarıyla birlikte) olduğu bir liste bulunmaktadır."Aşağıda, insan cinselliğiyle ilgili çoktan seçmeli soruların (cevaplarıyla birlikte) olduğu bir liste bulunmaktadır."
+"description": "Aşağıda, insan cinselliğiyle ilgili çoktan seçmeli soruların (cevaplarıyla birlikte) olduğu bir liste bulunmaktadır."
 "group": "mmlu_social_sciences"
 "group_alias": "social_sciences"
 "include": "_default_template_yaml"
