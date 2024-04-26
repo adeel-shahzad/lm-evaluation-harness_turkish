@@ -1,6 +1,5 @@
 "dataset_name": "college_chemistry"
-"description": "The following are multiple choice questions (with answers) about college\
-  \ chemistry.\n\n"
+"description": "Aşağıda üniversite kimyası hakkında çoktan seçmeli sorular (cevaplarıyla birlikte) bulunmaktadır."
 "group": "mmlu_stem"
 "group_alias": "stem"
 "include": "_default_template_yaml"
