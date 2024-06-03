@@ -1,7 +1,13 @@
+import datasets
+
+
 class ContextSampler:
     def __init__(self, docs, task, fewshot_indices=None, rnd=None) -> None:
         self.rnd = rnd
-        assert self.rnd, "must pass rnd to FewShotSampler!"
+        if not self.rnd:
+            raise ValueError(
+                "A `random.Random` generator argument must be provided to `rnd` of FewShotSampler!"
+            )
 
         self.task = task
         self.config = task._config
@@ -15,6 +21,10 @@ class ContextSampler:
 
         self.docs = docs  # HF dataset split, provided by task._fewshot_docs()
         if fewshot_indices:  # subset few-shot docs from
+            if not isinstance(self.docs, datasets.Dataset):
+                raise ValueError(
+                    "Got `fewshot_indices` but fewshot_docs are not a HF dataset. Don't use both `fewshot_indices` and a user-defined few-shot sample list simultaneously"
+                )
             self.docs = self.docs.select(fewshot_indices)
 
     def get_context(self, doc, num_fewshot):
