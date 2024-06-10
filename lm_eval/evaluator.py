@@ -232,7 +232,8 @@ def simple_evaluate(
         # override tasks' fewshot values to the provided num_fewshot arg value
         # except if tasks have it set to 0 manually in their configs--then we should never overwrite that
         if num_fewshot is not None:
-            if (default_num_fewshot = task_obj.get_config("num_fewshot")) == 0:
+            default_num_fewshot = task_obj.get_config("num_fewshot")
+            if default_num_fewshot == 0:
                 eval_logger.info(
                     f"num_fewshot has been set to 0 for {task_name} in its config. Manual configuration will be ignored."
                 )
@@ -243,11 +244,12 @@ def simple_evaluate(
                 task_obj.set_config(key="num_fewshot", value=num_fewshot)
             task_obj.set_fewshot_seed(seed=fewshot_random_seed)
             eval_logger.info(
-                f"Setting fewshot random generator seed to {fewshot_random_seed}"
+                "Setting fewshot random generator seed to {}".format(fewshot_random_seed)
             )
         else:
             # if num_fewshot not provided, and the task does not define a default one, default to 0
-            if (default_num_fewshot = task_obj.get_config("num_fewshot")) is None:
+            default_num_fewshot = task_obj.get_config("num_fewshot")
+            if default_num_fewshot is None:
                 task_obj.set_config(key="num_fewshot", value=0)
 
     if check_integrity:
