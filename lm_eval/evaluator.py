@@ -601,6 +601,7 @@ def evaluate(
         ) = consolidate_results(eval_tasks)
 
         ### Calculate group metrics ###
+        show_group_table = False
         if bool(results):
             results, versions, show_group_table, *_ = consolidate_group_results(
                 results, versions, task_dict
