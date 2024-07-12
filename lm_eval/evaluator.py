@@ -237,22 +237,6 @@ def simple_evaluate(
                     **{task_name: _adjust_config(task_obj)},
                 }
 
-        if predict_only:
-            log_samples = True
-            eval_logger.info(
-                f"Processing {task_name} in output-only mode. Metrics will not be calculated!"
-            )
-            # we have to change the class properties post-hoc. This is pretty hacky.
-            task_obj.override_metric(metric_name="bypass")
-
-        # override tasks' fewshot values to the provided num_fewshot arg value
-        # except if tasks have it set to 0 manually in their configs--then we should never overwrite that
-        if num_fewshot is not None:
-            default_num_fewshot = task_obj.get_config("num_fewshot")
-            if default_num_fewshot == 0:
-                eval_logger.info(
-                    f"num_fewshot has been set to 0 for {task_name} in its config. Manual configuration will be ignored."
-                )
             else:
                 if task_obj.get_config("output_type") == "generate_until":
                     if gen_kwargs is not None:
@@ -290,16 +274,6 @@ def simple_evaluate(
                 eval_logger.info(
                     f"Setting fewshot random generator seed to {fewshot_random_seed}"
                 )
-                task_obj.set_config(key="num_fewshot", value=num_fewshot)
-            task_obj.set_fewshot_seed(seed=fewshot_random_seed)
-            eval_logger.info(
-                "Setting fewshot random generator seed to {}".format(fewshot_random_seed)
-            )
-        else:
-            # if num_fewshot not provided, and the task does not define a default one, default to 0
-            default_num_fewshot = task_obj.get_config("num_fewshot")
-            if default_num_fewshot is None:
-                task_obj.set_config(key="num_fewshot", value=0)
 
                 adjusted_task_dict[task_name] = task_obj
 
@@ -601,7 +575,6 @@ def evaluate(
         ) = consolidate_results(eval_tasks)
 
         ### Calculate group metrics ###
-        show_group_table = False
         if bool(results):
             results, versions, show_group_table, *_ = consolidate_group_results(
                 results, versions, task_dict
