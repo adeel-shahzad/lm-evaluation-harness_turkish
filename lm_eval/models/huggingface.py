@@ -471,6 +471,7 @@ class HFLM(TemplateLM):
             revision=revision,
             trust_remote_code=trust_remote_code,
         )
+        print(f'#####################->>>>>>>>>>>>>>> {self._config}')
 
     def _create_model(
         self,
